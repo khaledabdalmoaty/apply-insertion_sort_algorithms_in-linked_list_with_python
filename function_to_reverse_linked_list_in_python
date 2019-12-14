@@ -1,0 +1,23 @@
+def reversed_sort(head):
+    p_to_f_1=head
+    curr=head
+    prev=None
+    while curr.next!=None:
+        prev=curr
+        curr=curr.next
+    prev.next=None
+    p_to_f_2=curr
+    while p_to_f_1!=None:
+        k=p_to_f_1
+        prev=None
+        while k.next!=None:
+            prev=k
+            k=k.next
+        if prev==None:
+            p_to_f_1=None
+        else:
+            prev.next=None
+        curr.next = k
+        curr = k
+
+    return p_to_f_2
