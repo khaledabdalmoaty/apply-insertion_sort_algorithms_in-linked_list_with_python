@@ -1,0 +1,77 @@
+class Node:
+    def __init__(self, initdata):
+        self.data = initdata
+        self.next = None
+
+    def getData(self):
+        return self.data
+
+    def getNext(self):
+        return self.next
+
+    def setData(self, newdata):
+        self.data = newdata
+
+    def setNext(self, newnext):
+        self.next = newnext
+
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def isEmpty(self):
+        return self.head == None
+
+    def add(self, item):
+        temp = Node(item)
+        temp.setNext(self.head)
+        self.head = temp
+
+    def printl(self):
+        n = self.head
+        while n != None:
+            print(n.getdata(), end=" ")
+            n = n.getnext()
+
+
+def insertionSort(h):
+    if h == None:
+        return None
+    p_to_f = h
+    h = h.next
+    p_to_f.next = None
+    while h != None:
+        # printList(p_to_f)    (show every loop)
+        curr = h
+        h = h.next
+        if curr.data < p_to_f.data:
+            curr.next = p_to_f
+            p_to_f = curr
+        else:
+            k = p_to_f
+            while k.next != None and curr.data > k.next.data:
+                k= k.next
+            curr.next= k.next
+            k.next= curr
+    return p_to_f
+
+def printList(d):
+    s = ''
+    while d:
+        s += str(d.data) + " "
+        d = d.next
+    print(s)
+
+def randomlist(n):
+   t = LinkedList()
+   for i in range(n) :
+      t.add(random.randrange(100))
+   return t
+
+s = randomlist(10)
+head = s.head
+
+sorted = insertionSort(head)
+
+printList(sorted)
